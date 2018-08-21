@@ -5,13 +5,30 @@ import * as BooksAPI from './BooksAPI'
 class BooksList extends Component {
 
     state = {
-        books: []
+        books: [],
+        shelves: [
+            {
+              name: 'none',
+              title: 'none'
+            },
+            {
+              name: 'wantToRead',
+              title: 'Want to read'
+            },
+            {
+              name: 'currentlyReading',
+              title: 'Currently reading'
+            },
+            {
+              name: 'read',
+              title: 'Read'
+            }
+          ]
     }
 
     componentDidMount() {
         BooksAPI.getAll().then((books) => {
             this.setState({books})
-            console.log(books)
         })
     }
 
@@ -21,9 +38,13 @@ class BooksList extends Component {
                 <div className="list-books-title">
                     <h1>MyReads</h1>
                 </div>
-                <BookShelf/>
-                <BookShelf/>
-                <BookShelf/>
+                {
+                    this.state.shelves.map(shelf => {
+                        return <BookShelf shelves={this.state.shelves} shelf={shelf.title} key={shelf.name}
+                            books={this.state.books.filter( book => (book.shelf === shelf.name))
+                        }/>
+                    })
+                }
                 <div className="open-search">
                     <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
                 </div>
