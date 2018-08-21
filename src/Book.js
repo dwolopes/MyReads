@@ -17,8 +17,10 @@ class Book extends Component {
                         </select>
                     </div>
                     </div>
-                    <div className="book-title">To Kill a Mockingbird</div>
-                    <div className="book-authors">Harper Lee</div>
+                    <div className="book-title">{this.props.book.title}</div>
+                    {this.props.book.authors.map((author, index) => {
+                        return <div className="book-authors" key={index}>{author}</div>
+                    })}
                 </div>
             </li>
         )

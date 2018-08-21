@@ -8,10 +8,6 @@ class BooksList extends Component {
         books: [],
         shelves: [
             {
-              name: 'none',
-              title: 'none'
-            },
-            {
               name: 'wantToRead',
               title: 'Want to read'
             },

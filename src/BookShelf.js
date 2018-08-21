@@ -8,7 +8,7 @@ class BookShelf extends Component {
             <div className='bookshelf'>
                 <h2 className='bookshelf-title'>{this.props.shelf}</h2>
                 <div className='bookshelf-books'>
-                    <BooksGrid />
+                    <BooksGrid booksGrid={this.props.books}/>
                 </div>
             </div>
       </div>
