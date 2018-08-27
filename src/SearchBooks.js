@@ -7,17 +7,42 @@ import BooksGrid from './BooksGrid'
 class SearchBooks extends Component{
 
   state = {
-    books: []
+    books: [],
+    searchedBooks: []
+  }
+
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+        this.setState({books})
+    })
   }
 
   updateQuery = (query) => {
-    if( query !== ''){
-      BooksAPI.search(query.trim()).then((books) => {
-        this.setState({books})
+    let searchTerm = query.trim();
+    if(searchTerm.length > 0){
+      BooksAPI.search(searchTerm).then((searchedBooks) => {
+          if('error' in searchedBooks){
+            this.setState({searchedBooks: searchedBooks.items})
+          }else {
+            this.setState({searchedBooks})
+          }
       })
     } else {
-      this.setState({books: []})
+      this.setState({searchedBooks: []})
     }
+  }
+
+  updateShelf = (bookUptaded, shelfUptaded) => {
+    BooksAPI.update(bookUptaded, shelfUptaded).then(
+        this.setState((state) => ({
+            books: state.books.map((book) => {
+                if(book.id === bookUptaded.id){
+                    book.shelf = shelfUptaded
+                }
+                return book
+            })
+        }))
+    )
   }
 
   render() {
@@ -40,8 +65,7 @@ class SearchBooks extends Component{
             </div>
           </div>
           <div className="search-books-results">
-          {console.log(this.state.books)}
-              <BooksGrid booksGrid={this.state.books}/>
+              <BooksGrid booksGrid={this.state.searchedBooks} onChangeShelf={this.updateShelf} />
           </div>
         </div>
       )
