@@ -7,23 +7,28 @@ import BooksGrid from './BooksGrid'
 class SearchBooks extends Component{
 
   state = {
-    books: [],
     searchedBooks: []
   }
 
-  updateQuery = (query) => {
+  searchQuery = (query) => {
     let searchTerm = query.trim();
-    if(searchTerm.length > 0){
-      BooksAPI.search(searchTerm).then((searchedBooks) => {
-          if('error' in searchedBooks){
-            this.setState({searchedBooks: searchedBooks.items})
-          }else {
-            this.setState({searchedBooks})
+    BooksAPI.search(searchTerm).then(res => {
+      if(!res.error){
+        this.setState(
+          {
+            searchedBooks: res.map( book => {
+              let existsBook = this.props.books.find(b => b.id === book.id);
+              if(existsBook){
+                book.shelf = existsBook.shelf;
+              } else {
+                book.shelf = 'none';
+              }
+              return book;
+            })
           }
-      })
-    } else {
-      this.setState({searchedBooks: []})
-    }
+        )
+      }
+    })
   }
 
   render() {
@@ -42,7 +47,7 @@ class SearchBooks extends Component{
               */
              }
               <input type="text"
-                placeholder="Search by title or author" onChange={(event) => this.updateQuery(event.target.value)}/>
+                placeholder="Search by title or author" onChange={(event) => this.searchQuery(event.target.value)}/>
             </div>
           </div>
           <div className="search-books-results">
