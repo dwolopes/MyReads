@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
-import * as BooksAPI from './BooksAPI'
 
 class BooksList extends Component {
 
     state = {
-        books: [],
         shelves: [
             {
               name: 'wantToRead',
@@ -23,25 +21,6 @@ class BooksList extends Component {
           ]
     }
 
-    componentDidMount() {
-        BooksAPI.getAll().then((books) => {
-            this.setState({books})
-        })
-    }
-
-    updateShelf = (bookUptaded, shelfUptaded) => {
-        BooksAPI.update(bookUptaded, shelfUptaded).then(
-            this.setState((state) => ({
-                books: state.books.map((book) => {
-                    if(book.id === bookUptaded.id){
-                        book.shelf = shelfUptaded
-                    }
-                    return book
-                })
-            }))
-        )
-    }
-
     render() {
         return (
             <div className="list-books">
@@ -51,8 +30,8 @@ class BooksList extends Component {
                 {
                     this.state.shelves.map(shelf => {
                         return <BookShelf shelves={this.state.shelves} shelf={shelf.title} key={shelf.name}
-                            books={this.state.books.filter( book => (book.shelf === shelf.name))}
-                            onChangeShelf={this.updateShelf} />
+                            books={this.props.books.filter( book => (book.shelf === shelf.name))}
+                            onChangeShelf={this.props.updateShelf} />
                     })
                 }
                 <div className="open-search">

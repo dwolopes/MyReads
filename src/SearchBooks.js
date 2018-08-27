@@ -11,12 +11,6 @@ class SearchBooks extends Component{
     searchedBooks: []
   }
 
-  componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-        this.setState({books})
-    })
-  }
-
   updateQuery = (query) => {
     let searchTerm = query.trim();
     if(searchTerm.length > 0){
@@ -30,19 +24,6 @@ class SearchBooks extends Component{
     } else {
       this.setState({searchedBooks: []})
     }
-  }
-
-  updateShelf = (bookUptaded, shelfUptaded) => {
-    BooksAPI.update(bookUptaded, shelfUptaded).then(
-        this.setState((state) => ({
-            books: state.books.map((book) => {
-                if(book.id === bookUptaded.id){
-                    book.shelf = shelfUptaded
-                }
-                return book
-            })
-        }))
-    )
   }
 
   render() {
