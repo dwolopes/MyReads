@@ -52,7 +52,7 @@ class SearchBooks extends Component{
             </div>
           </div>
           <div className="search-books-results">
-              <BooksGrid booksGrid={this.state.searchedBooks} onChangeShelf={this.updateShelf} />
+              <BooksGrid booksGrid={this.state.searchedBooks} onChangeShelf={this.props.onChangeShelf} />
           </div>
 
         </div>

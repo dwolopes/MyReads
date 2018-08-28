@@ -31,7 +31,7 @@ class BooksList extends Component {
                     this.state.shelves.map(shelf => {
                         return <BookShelf shelves={this.state.shelves} shelf={shelf.title} key={shelf.name}
                             books={this.props.books.filter( book => (book.shelf === shelf.name))}
-                            onChangeShelf={this.props.updateShelf} />
+                            onChangeShelf={this.props.onChangeShelf} />
                     })
                 }
                 <div className="open-search">

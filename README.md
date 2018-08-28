@@ -1,8 +1,8 @@
 # MyReads Project
 
-Myreads app is a virtual bookshelf and it helps you to manage and control what you are reading, want to read, and read. It is based in fact in 3 main shelves, and they are divided based on the books' status reading. For intance, if you are reading the book, it goes to the "currently reading" shelf. There are more two shelves besides "currently reading": "Wanto to read" and "Read". And you are able to change de books' shelf if the status of the book changes.
+Myreads app is a virtual bookshelf and it helps you to manage and control what you are reading, want to read, and read. It is based in three main shelves, and they are divided based on the books' reading status. For instance: if you are reading the book, it goes to the "currently reading" shelf. There are more two shelves besides "currently reading": "Wanto to read" and "Read". And you are able to change de books' shelf if the book status changes.
 
-Besides control the books already in the shelf, you can search and add books to one of the main shelves. 
+Besides control the books already in a shelf, you are able to search and add books to one of the three shelves. 
 
 ## Getting Started
 
@@ -26,16 +26,16 @@ Node.js and npm
 
 ### Installing
 
-After download and install Node.js and NPM, run the follow comands in your prompt: 
+After download and install Node.js and NPM, from the project folder run the follow comands in your prompt: 
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
 ## Running the application
 
-After running `npm start` it will open a new tab on your default browser with the follow adress bar: `http://localhost:3000`. To test the application, you can change the books from shelves, using the select button above each book. You must observe the books changing shelves based on your choice. 
+After running `npm start` it will open a new tab on your default browser with the follow adress bar: `http://localhost:3000`. To test the application, you can change the books from shelves, using the select button above each book image. You must observe the books changing from shelves based on your choice. 
 
-You may click on an `add` button, it allows you to search for books and add them to your shelves. Check it out the `Terms` to search books in [SEARCH_TERMS.md](SEARCH_TERMS.md). You will notice that the books already in one of your shelves will appear in the results of the search with their current status and shelf. It might happen if you search for terms and it return as result some of the books already in one of your current shelves.
+You may click on an `add` button, it allows you to search for books and add them to your shelves. Check it out the `Terms` to search books in [SEARCH_TERMS.md](SEARCH_TERMS.md). You will notice that the books already in one of your shelves will appear in the results of the search with their current status and shelf (represented by the select button above each book). It might happen if you search for terms and it return as result some of the books already in one of your current shelves.
 
 ## Important
 
@@ -98,6 +98,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.
 
 ## Authors
 
-* **Douglas Lopes** - *Initial work* - [Douglas Lopes](https://github.com/dwolopes)
+* **Douglas Lopes** - [Douglas Lopes](https://github.com/dwolopes)
 
 See also the list of [contributors](https://github.com/dwolopes/MyReads/graphs/contributors) who participated in this project.

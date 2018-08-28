@@ -18,23 +18,31 @@ class BooksApp extends React.Component {
   }
 
   updateShelf = (bookUptaded, shelfUptaded) => {
-    BooksAPI.update(bookUptaded, shelfUptaded).then(
-        this.setState((state) => ({
-            books: state.books.map((book) => {
-                if(book.id === bookUptaded.id){
-                    book.shelf = shelfUptaded
-                }
-                return book
-            })
-        }))
-    )
+    BooksAPI.update(bookUptaded, shelfUptaded).then( res => 
+    {
+      if(!('error' in res)){
+        bookUptaded.shelf = shelfUptaded;
+        let newBooks = this.state.books.filter( book => book.id !== bookUptaded.id);
+        console.log(newBooks)
+        if(bookUptaded.shelf !== 'none'){
+          console.log('entrei')
+          newBooks.push(bookUptaded)
+          console.log(newBooks)
+        }
+        this.setState({
+          books: newBooks
+        })
+      } else {
+        console.log('Error in uptaded shelf!')
+      }
+    })
   }
 
   render() {
     return (
       <div className="app">
-        <Route path='/search'  render={() => (<SearchBooks books={this.state.books} updateShelf = {this.updateShelf}/>)}/>
-        <Route exact path='/' render={() => (<BookList books={this.state.books} updateShelf = {this.updateShelf}/>)}/>
+        <Route path='/search'  render={() => (<SearchBooks books={this.state.books} onChangeShelf = {this.updateShelf}/>)}/>
+        <Route exact path='/' render={() => (<BookList books={this.state.books} onChangeShelf = {this.updateShelf}/>)}/>
       </div>
     )
   }
