@@ -25,9 +25,7 @@ class BooksApp extends React.Component {
         let newBooks = this.state.books.filter( book => book.id !== bookUptaded.id);
         console.log(newBooks)
         if(bookUptaded.shelf !== 'none'){
-          console.log('entrei')
           newBooks.push(bookUptaded)
-          console.log(newBooks)
         }
         this.setState({
           books: newBooks
