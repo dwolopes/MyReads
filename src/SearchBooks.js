@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
+import { Debounce } from 'react-throttle';
 import * as BooksAPI from './BooksAPI'
 import BooksGrid from './BooksGrid'
 
@@ -13,7 +14,7 @@ class SearchBooks extends Component{
 
   searchQuery = (query) => {
     let searchTerm = query.trim();
-    if(searchTerm){
+    if(searchTerm !== ''){
       BooksAPI.search(searchTerm).then(res => {
         if(!('error' in res)){
           this.setState(
@@ -47,8 +48,10 @@ class SearchBooks extends Component{
           <div className="search-books-bar">
             <Link to='/' className="close-search"> Close </Link>
             <div className="search-books-input-wrapper">
+            <Debounce time="200" handler="onChange">
               <input type="text"
                 placeholder="Search by title or author" onChange={(event) => this.searchQuery(event.target.value)}/>
+            </Debounce>
             </div>
           </div>
           <div className="search-books-results">
