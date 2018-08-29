@@ -14,8 +14,7 @@ class BooksApp extends React.Component {
   // Get all books which belongs to a one of the shelves
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      console.log(books)
-      this.setState({books})
+      this.setState({books});
     })
   }
 

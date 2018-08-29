@@ -64,6 +64,7 @@ body, .app {
 
 /* search page */
 
+/* The h1 element below is responsible to notice the user that none term was typed to search a book */
 h1 {
   font-weight: 400;
   color: #999;
