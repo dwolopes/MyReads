@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import BooksGrid from './BooksGrid'
 
 // Applying Stateless Functional Components 
