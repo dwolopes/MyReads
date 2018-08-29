@@ -11,27 +11,31 @@ class BooksApp extends React.Component {
   }
 
   
+  // Get all books which belongs to a one of the shelves
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-        this.setState({books})
+      console.log(books)
+      this.setState({books})
     })
   }
 
+  // Filter and uptaded shelf based on the books' reading status
   updateShelf = (bookUptaded, shelfUptaded) => {
     BooksAPI.update(bookUptaded, shelfUptaded).then( res => 
     {
       if(!('error' in res)){
         bookUptaded.shelf = shelfUptaded;
+        // Filter out the uptaded book of the array of books' reading status
         let newBooks = this.state.books.filter( book => book.id !== bookUptaded.id);
-        console.log(newBooks)
         if(bookUptaded.shelf !== 'none'){
-          newBooks.push(bookUptaded)
+          // Push the uptaded book with its new shelf into the array of books' reading status
+          newBooks.push(bookUptaded);
         }
         this.setState({
           books: newBooks
         })
       } else {
-        console.log('Error in uptaded shelf!')
+        alert('Error in uptaded shelf!');
       }
     })
   }

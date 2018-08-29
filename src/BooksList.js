@@ -28,6 +28,8 @@ class BooksList extends Component {
                     <h1>MyReads</h1>
                 </div>
                 {
+                    // Based on the the existing shelves: sort the books among these shelves and create a bookshelf
+                    // element for those books which are in that shelf element
                     this.state.shelves.map(shelf => {
                         return <BookShelf shelves={this.state.shelves} shelf={shelf.title} key={shelf.name}
                             books={this.props.books.filter( book => (book.shelf === shelf.name))}

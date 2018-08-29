@@ -64,6 +64,11 @@ body, .app {
 
 /* search page */
 
+h1 {
+  font-weight: 400;
+  color: #999;
+}
+
 .search-books-bar {
   position: fixed;
   width: 100%;

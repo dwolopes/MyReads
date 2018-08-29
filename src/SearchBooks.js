@@ -55,7 +55,13 @@ class SearchBooks extends Component{
             </div>
           </div>
           <div className="search-books-results">
-              <BooksGrid booksGrid={this.state.searchedBooks} onChangeShelf={this.props.onChangeShelf} />
+            {
+              this.state.empty && 
+                <h1>
+                  <center>No book searched yet! After search it you result goes here :)</center>
+                </h1>
+            }
+            <BooksGrid booksGrid={this.state.searchedBooks} onChangeShelf={this.props.onChangeShelf} />
           </div>
 
         </div>
