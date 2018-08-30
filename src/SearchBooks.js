@@ -33,7 +33,9 @@ class SearchBooks extends Component{
             }
           )
         } else {
-          this.setState({empty:true})
+          this.setState(
+            {searchedBooks: [], empty:true}
+          )
         }
       })
     } else {
@@ -72,7 +74,7 @@ class SearchBooks extends Component{
     }
 }
 
-SearchBooks.PropTypes = {
+SearchBooks.propTypes = {
   books: PropTypes.array.isRequired,
   onChangeShelf: PropTypes.func.isRequired
 }

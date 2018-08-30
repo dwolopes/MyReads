@@ -15,7 +15,7 @@ function BooksGrid (props) {
   )
 }
 
-BooksGrid.PropTypes = {
+BooksGrid.propTypes = {
   booksGrid: PropTypes.array.isRequired,
   onChangeShelf: PropTypes.func.isRequired
 }

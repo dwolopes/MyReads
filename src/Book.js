@@ -71,9 +71,8 @@ class Book extends Component {
                     { 
                         // get if they exists all authors' name and show it below the books' image
                         'authors' in this.props.book > 0 && 
-                        this.props.book.authors.map((author, index) =>{
+                        this.props.book.authors.map((author, index) =>
                             <div className="book-authors" key={index}>{author}</div>
-                            }
                         )
                     }
                 </div>
@@ -82,7 +81,7 @@ class Book extends Component {
     }
 }
 
-Book.PropTypes = {
+Book.propTypes = {
     book: PropTypes.object.isRequired,
     key: PropTypes.number.isRequired,
     onChangeShelf: PropTypes.func.isRequired
