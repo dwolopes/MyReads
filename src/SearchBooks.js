@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Debounce } from 'react-throttle';
 import * as BooksAPI from './BooksAPI'
@@ -56,17 +57,24 @@ class SearchBooks extends Component{
           </div>
           <div className="search-books-results">
             {
-              this.state.empty && 
+              this.state.empty ? (
                 <h1>
-                  <center>No book searched yet! After search it you result goes here :)</center>
+                  <center>No book searched yet or incorret term searched! After search it you result goes here :)</center>
                 </h1>
+              ) : (
+                <BooksGrid booksGrid={this.state.searchedBooks} onChangeShelf={this.props.onChangeShelf} />
+              )
             }
-            <BooksGrid booksGrid={this.state.searchedBooks} onChangeShelf={this.props.onChangeShelf} />
           </div>
 
         </div>
       )
     }
+}
+
+SearchBooks.PropTypes = {
+  books: PropTypes.array.isRequired,
+  onChangeShelf: PropTypes.func.isRequired
 }
 
 export default SearchBooks

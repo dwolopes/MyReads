@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import BooksGrid from './BooksGrid'
 
 // Applying Stateless Functional Components
@@ -13,6 +14,14 @@ function BookShelf (props) {
       </div>
     </div>
   )
+}
+
+BookShelf.PropTypes = {
+  shelves: PropTypes.array.isRequired,
+  shelf: PropTypes.string.isRequired,
+  key: PropTypes.string.isRequired,
+  books: PropTypes.array.isRequired,
+  onChangeShelf: PropTypes.func.isRequired
 }
 
 export default BookShelf
